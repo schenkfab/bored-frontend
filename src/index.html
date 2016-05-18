@@ -9,86 +9,9 @@
 		<!-- endinject -->
 		<!-- inject:css -->
 		<!-- endinject -->
-		<script type="text/javascript" src="https://www.google.com/jsapi"></script>
-    	<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-
 	</head>
 	<body ng-app="myApp" ng-controller='mainCtrl'>
-	<div class="container-fluid">
-	  <div class="row">
-		<div class="col-sm-3 col-md-2 sidebar">
-			<h4>Reports</h4>
-			<ul class="nav nav-sidebar">
-				<li ng-click='setPage("employee")' ng-class="{active: getPage() == 'employee'}"><a href="#">Employees</a></li>
-				<li ng-click='setPage("metrics")' ng-class="{active: getPage() == 'metrics'}"><a href="#">Key metrics</a></li>
-				<li ng-click='setPage("data")' ng-class="{active: getPage() == 'data'}"><a href="#">Data view</a></li>
-			</ul>
-		</div>
-		<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-			<section ng-controller='employeeCtrl' ng-show='visible()'>
-				<h2 class="page-header">Employees by Region</h2>
-				<div class="row">
-					<div class="col-md-12">
-						<div class="row">
-							<div class="col-md-4">
-								<p ng-click='employee.chartType = "Table"'>Show Data</p>
-							</div>
-							<div class="col-md-4">
-								<p ng-click='employee.chartType = "GeoMap"'>Show Map</p>
-							</div>
-							<!--<div class="col-md-4">
-								<p ng-click='employee.chartType = "PieChart"'>Show Pie</p>
-							</div>-->
-						</div>
-						<div style='min-height:500px;height: 75%;width: 75%;margin:auto;background:#fff;text-align:center
-' gchart data='employee.data' json='true' chart="{{employee.chartType}}"></gchart>
-					</div>
-				</div>
-			</section>
-			<div class="row">
-				<div class="col-md-6">
-					<section ng-controller='issueCtrl' ng-show='visible()'>
-						<h3 class="page-header">Chart per Month</h3>
-						<div width={{random}} class='chart'
-							gchart 
-							json='true' 
-							data='issueLine.data' 
-							chart="{{issueLine.chartType}}">
-						</div>
-						<h3 class="page-header">Open Issues: <span ng-bind='issueCount.open'></span></h3>
-					</section>
-				</div>
-				<div class="col-md-6">
-					<section ng-controller='customerCtrl' ng-show='visible()'>
-						<h3 class="page-header">Paying Customer</h2>
-						<div width={{random}} gchart class='chart' data='customers.data' json="true" chart="{{customers.chartType}}"></div>		
-					</section>
-				</div>
-			</div>
-			<section ng-controller='dataCtrl' ng-show='visible()'>
-				<h2 class="page-header">Open Issues</h2>
-				<h3 class="page-header">Detail Data</h3>
-				<span class="btn btn-success" ng-click="showFilters = !showFilters;">Toggle Filters</span>
-				<div id="filters" class="form-horizontal" ng-show='showFilters'>	
-					<br><br>
-					<h4 class="page-header">Filters</h4>
-					<div ng-repeat='head in issue.header' class="form-group">
-						<label class="col-sm-2 control-label" for='{{head}}'>{{head}}</label>
-						<div class="col-sm-10">
-							<input id='{{head}}' class='form-control' type="text" ng-model='filters[head]' uib-typeahead='value for value in issue.values[head] | filter:$viewValue'>
-						</div>
-					</div>
-					<div class="col-sm-2">
-						<button class="btn btn-default pull-right" ng-click='applyFilter()'>Apply</button>
-					</div>
-					<div class="col-sm-2">
-						<button class="btn btn-default pull-left" ng-click='reloadData()'>Reset</button>
-					</div>
-				</div>
-				<br><br><br><br>
-				<div width={{random}} style='height: 40%' gchart data='issue.data' chart="{{issue.chartType}}"></div>
-			</section>
-		</div>
+	
 		<!-- inject:jsVendor -->
 		<!-- endinject -->
 		<!-- inject:js -->
