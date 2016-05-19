@@ -1,21 +1,17 @@
-<div class="message" ng-repeat='message in messages'>
-  <div class="row message-header">
-    <div class="message-sender col-md-6 pull-left">
-      {{message.sender}}
-    </div>
-    <div class="message-date col-md-6 text-right">
-      {{message.sentOn | date:'MM/dd/yyyy @ hh:mma'}}
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-md-12 message-content">
-      {{message.message}}
-    </div>
-  </div>
-  <div class="row message-footer">
-    <div class="message-buttons col-md-6 text-right">
-      <a class="btn btn-default" ng-click='reply(message)'>Reply</a>
-      <a class="btn btn-default" ng-click='delete(message)'>Delete</a>
+<div class="row" ng-repeat='message in messages'>
+  <div class="col s12 m6">
+    <div class="card blue-grey darken-1">
+      <div class="card-content white-text">
+        <span class="card-title">{{message.sender}}</span>
+        <p>{{message.message}}</p>
+      </div>
+      <div class="card-action">
+        <a href="#">Reply</a>
+        <a href="#">Delete</a>
+        <div class='right-align white-text'>
+          {{message.sentOn | date:'MM/dd/yyyy @ hh:mma'}}
+        </div>
+      </div>
     </div>
   </div>
 </div>
