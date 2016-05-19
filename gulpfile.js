@@ -9,11 +9,13 @@ var concat = require('gulp-concat');
 var uglify = require('gulp-uglify');
 var gutil = require('gulp-util');
 
-gulp.task('inject:dev', ['mock:dev', 'css:dev', 'fonts:dev', 'sass:dev', 'js:dev', 'directives:dev'], function () {
+gulp.task('inject:dev', ['sass:dev', 'js:dev', 'directives:dev'], function () {
 	var target = gulp.src('./src/index.html');
 	var sources = gulp.src(['./.tmp/**/*.js', './.tmp/**/style.css'], {read: false});
-	var sourceVendorJs = gulp.src(['./bower_components/jquery/dist/jquery.js', './bower_components/angular/angular.js'
-		,'./bower_components/angular-bootstrap/ui-bootstrap.js', './bower_components/angular-bootstrap/ui-bootstrap-tpls.js',  './bower_components/ng-focus-if/focusIf.js']);
+	var sourceVendorJs = gulp.src([
+		'./bower_components/jquery/dist/jquery.js',
+	 	'./bower_components/angular/angular.js'
+	]);
 	var vendorSources = gulp.src(['./.tmp/**/vendors.css', './.tmp/css/*.*'], {read: false});
 
 	return target
@@ -23,26 +25,6 @@ gulp.task('inject:dev', ['mock:dev', 'css:dev', 'fonts:dev', 'sass:dev', 'js:dev
 		.pipe(wiredep())
 		.pipe(gulp.dest('./.tmp'))
 		.pipe(browserSync.stream());
-});
-
-gulp.task('bootstrap-font:dev', function () {
-	return gulp.src('./bower_components/bootstrap/fonts/*.*')
-		.pipe(gulp.dest('./.tmp/fonts/bootstrap'));
-});
-
-gulp.task('fonts:dev', ['bootstrap-font:dev'], function () {
-	return gulp.src('./bower_components/font-awesome/fonts/*.*')
-		.pipe(gulp.dest('./.tmp/fonts'));
-});
-
-gulp.task('mock:dev', function () {
-	return gulp.src('./src/assets/mock/*.*')
-		.pipe(gulp.dest('./.tmp/assets/mock/'));
-});
-
-gulp.task('css:dev', function () {
-	return gulp.src('./bower_components/font-awesome/css/*.*')
-		.pipe(gulp.dest('./.tmp/css'));
 });
 
 gulp.task('directives:dev', function() {

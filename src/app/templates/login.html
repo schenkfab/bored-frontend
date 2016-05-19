@@ -1,13 +1,17 @@
-<div class="container">
-	<form ng-controller='loginCtrl'>
-    <div class="form-group">
-      <label for="name">Name</label>
-      <input type="name" ng-model='user.name' class="form-control" id="name" placeholder="Name">
+<div class="row">
+	<form ng-controller='loginCtrl' class='col s12'>
+    <div class="row">
+        <div class="input-field col s12">
+          <input id="name" type="text" ng-model='user.name' class="validate">
+          <label for="name">Name</label>
+        </div>
+      </div>
+    <div class="row">
+      <div class="input-field col s12">
+        <input id="password" type="password" ng-model='user.password' class="validate">
+        <label for="password">Password</label>
+      </div>
     </div>
-    <div class="form-group">
-      <label for="password">Password</label>
-      <input type="password" ng-model='user.password' class="form-control" id="password" placeholder="Password">
-    </div>
-    <button type="submit" ng-click='user.login()' class="btn btn-default">Login</button>
+    <a class="waves-effect waves-light btn" ng-click='user.login()' ><i class="material-icons left">input</i>Login</a>
   </form>
 </div>
