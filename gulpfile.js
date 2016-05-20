@@ -9,7 +9,7 @@ var concat = require('gulp-concat');
 var uglify = require('gulp-uglify');
 var gutil = require('gulp-util');
 
-gulp.task('inject:dev', ['sass:dev', 'js:dev', 'directives:dev'], function () {
+gulp.task('inject:dev', ['sass:dev', 'js:dev', 'directives:dev', 'fonts:dev'], function () {
 	var target = gulp.src('./src/index.html');
 	var sources = gulp.src(['./.tmp/**/*.js', './.tmp/**/style.css'], {read: false});
 	var sourceVendorJs = gulp.src([
@@ -25,6 +25,11 @@ gulp.task('inject:dev', ['sass:dev', 'js:dev', 'directives:dev'], function () {
 		.pipe(wiredep())
 		.pipe(gulp.dest('./.tmp'))
 		.pipe(browserSync.stream());
+});
+
+gulp.task('fonts:dev', function () {
+	return gulp.src('./src/fonts/**/*')
+		.pipe(gulp.dest('./.tmp/fonts/'));
 });
 
 gulp.task('directives:dev', function() {
