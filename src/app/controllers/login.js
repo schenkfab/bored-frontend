@@ -2,8 +2,13 @@
 
 angular.module('myApp').controller('loginCtrl', ($scope, $http, authenticationService) => {
   $scope.user = {};
+  $scope.auth = authenticationService;
 
   $scope.user.login = () => {
-    authenticationService.authenticate($scope.user.name, $scope.user.password);
+    $scope.auth.authenticate($scope.user.name, $scope.user.password)
+      .then(() => {
+      }, (error) => {
+        console.log(error);
+      });
   };
 });
