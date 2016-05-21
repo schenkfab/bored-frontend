@@ -4,12 +4,7 @@ angular.module('myApp').service('authenticationService', function ($http, config
 
   this.authenticate = (name, password) => {
     return $q((resolve, reject) => {
-      const data = {
-        name,
-        password,
-      };
-
-      $http.post(configService.REST_URLS.authentication, data).then(
+      $http.post(configService.REST_URLS.authentication, { name, password }).then(
         (response) => {
           this.token = response.data.token;
           this.status.isLoggedIn = true;
