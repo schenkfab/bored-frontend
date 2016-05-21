@@ -16,6 +16,7 @@ angular.module('myApp').controller('messageCtrl', ($scope, messageService, authe
   $scope.$watch('ms', (newValue, oldValue) => {
     if (newValue !== oldValue) {
       $scope.messages = newValue.messages;
+      console.log($scope.messages);
     }
   }, true);
 
