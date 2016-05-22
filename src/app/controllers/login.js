@@ -1,6 +1,6 @@
 /* eslint no-param-reassign: ["error", { "props": false }]*/
 
-angular.module('myApp').controller('loginCtrl', ($scope, $http, authenticationService) => {
+angular.module('myApp').controller('loginCtrl', function($scope, $http, authenticationService) {
   $scope.user = {};
   $scope.auth = authenticationService;
 
