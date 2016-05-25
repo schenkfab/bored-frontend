@@ -1,5 +1,5 @@
-<div ng-controller='loginCtrl' class="row" ng-show='!auth.status.isLoggedIn'>
-  <div id="login" class="col s12">
+<div ng-controller='loginCtrl' class="row">
+  <div id="login" class="col s12" ng-show='!auth.status.isLoggedIn'>
     <form class='col s12'>
       <div class="row">
           <div class="input-field col s12">
@@ -17,8 +17,8 @@
       <a class="waves-effect waves-light btn" ng-click='user.register()'>Register</a>
     </form>
   </div>
-  <div id="register" class="col s12">
-    
+  <div ng-show='auth.status.isLoggedIn' class="col s12">
+    <p class="flow-text center-align">Welcome! {{user.name}}</p>
   </div>
   
 </div>
