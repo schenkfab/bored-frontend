@@ -11,11 +11,27 @@
 		<!-- endinject -->
 	</head>
 	<body ng-app="myApp" ng-controller='mainCtrl'>
-		<div class="container">
-			<login></login>
-			<h3>Messages</h3>
-			<message></message>
-		</div>
+  <div class="row">
+    <div class="col s12">
+      <ul class="tabs">
+        <li class="tab col s3"><a href="#login">Login</a></li>
+        <li class="tab col s3"><a class="active" href="#contacts">Contacts</a></li>
+        <li class="tab col s3"><a href="#messages">Messages</a></li>
+      </ul>
+    </div>
+    <div id="login" class="col s12">
+      <div class="container">
+        <login></login>
+      </div>
+    </div>
+    <div id="contacts" class="col s12"></div>
+    <div id="messages" class="col s12">
+      <div class="container">
+        <message></message>
+      </div>
+    </div>
+  </div>
+
 		<!-- inject:jsVendor -->
 		<!-- endinject -->
 		<!-- inject:js -->
