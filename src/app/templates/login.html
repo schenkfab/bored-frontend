@@ -1,38 +1,24 @@
 <div ng-controller='loginCtrl' class="row" ng-show='!auth.status.isLoggedIn'>
-	<form class='col s12'>
-    <div class="row">
+  <div id="login" class="col s12">
+    <form class='col s12'>
+      <div class="row">
+          <div class="input-field col s12">
+            <input id="name" type="text" ng-model='user.name' class="validate">
+            <label for="name">Name</label>
+          </div>
+        </div>
+      <div class="row">
         <div class="input-field col s12">
-          <input id="name" type="text" ng-model='user.name' class="validate">
-          <label for="name">Name</label>
+          <input id="password" type="password" ng-model='user.password' class="validate">
+          <label for="password">Password</label>
         </div>
       </div>
-    <div class="row">
-      <div class="input-field col s12">
-        <input id="password" type="password" ng-model='user.password' class="validate">
-        <label for="password">Password</label>
-      </div>
-    </div>
-    <a class="waves-effect waves-light btn" ng-click='user.login()' ><i class="material-icons left">input</i>Login</a>
-  </form>
-  <ul class="collapsible" data-collapsible="accordion">
-    <li>
-      <div class="collapsible-header"><i class="material-icons">filter_drama</i>First</div>
-      <div class="collapsible-body"><p>Lorem ipsum dolor sit amet.</p></div>
-    </li>
-    <li>
-      <div class="collapsible-header"><i class="material-icons">place</i>Second</div>
-      <div class="collapsible-body"><p>Lorem ipsum dolor sit amet.</p></div>
-    </li>
-    <li>
-      <div class="collapsible-header"><i class="material-icons">whatshot</i>Third</div>
-      <div class="collapsible-body"><p>Lorem ipsum dolor sit amet.</p></div>
-    </li>
-  </ul>
-
-
-
-
-
-
-
+      <a class="waves-effect waves-light btn" ng-click='user.login()'>Login</a>
+      <a class="waves-effect waves-light btn" ng-click='user.register()'>Register</a>
+    </form>
+  </div>
+  <div id="register" class="col s12">
+    
+  </div>
+  
 </div>

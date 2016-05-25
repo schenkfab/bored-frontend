@@ -16,4 +16,19 @@ angular.module('myApp').service('authenticationService', function ($http, config
       );
     });
   };
+
+  this.register = (name, password) => {
+    return $q((resolve, reject) => {
+      $http.post(configService.REST_URLS.registration, { name, password }).then(
+        (response) => {
+          this.token = response.data.token;
+          this.status.isLoggedIn = true;
+          resolve();
+        },
+        (error) => {
+          reject(error);
+        }
+      );
+    });
+  };
 });

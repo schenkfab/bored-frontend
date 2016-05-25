@@ -11,4 +11,12 @@ angular.module('myApp').controller('loginCtrl', function($scope, $http, authenti
         console.log(error);
       });
   };
+
+  $scope.user.register = () => {
+    $scope.auth.register($scope.user.name, $scope.user.password)
+      .then(() => {
+      }, (error) => {
+        console.log(error);
+      });
+  };
 });
