@@ -8,9 +8,6 @@ angular.module('myApp').controller('loginCtrl', function($location, $scope, $htt
     $scope.auth.authenticate($scope.user.name, $scope.user.password)
       .then(() => {
         // Switch to Contacts:
-        const el = angular.element(document.querySelector('ul.tabs'));
-        console.log(el);
-        el.tabs('select_tab', 'messages');
       }, (error) => {
         console.log(error);
       });

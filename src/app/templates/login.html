@@ -1,24 +1,25 @@
 <div ng-controller='loginCtrl' class="row">
-  <div id="login" class="col s12" ng-show='!auth.status.isLoggedIn'>
-    <form class='col s12'>
-      <div class="row">
-          <div class="input-field col s12">
-            <input id="name" type="text" ng-model='user.name' class="validate">
-            <label for="name">Name</label>
+  <md-content flex layout-padding>
+    <div id="login" class="col s12" ng-show='!auth.status.isLoggedIn'>
+      <form class='col s12'>
+        <md-content layout-gt-sm="row" layout-padding>
+          <div>
+            <md-input-container class="md-block">
+              <label>Title</label>
+              <input ng-model="user.name">
+            </md-input-container>
+            <md-input-container class="md-block">
+              <label>Email</label>
+              <input ng-model="user.password" type="password">
+            </md-input-container>
           </div>
-        </div>
-      <div class="row">
-        <div class="input-field col s12">
-          <input id="password" type="password" ng-model='user.password' class="validate">
-          <label for="password">Password</label>
-        </div>
-      </div>
-      <a class="waves-effect waves-light btn" ng-click='user.login()'>Login</a>
-      <a class="waves-effect waves-light btn" ng-click='user.register()'>Register</a>
-    </form>
-  </div>
-  <div ng-show='auth.status.isLoggedIn' class="col s12">
-    <p class="flow-text center-align">Welcome! {{user.name}}</p>
-  </div>
-  
+        </md-content>
+        <md-button class="md-raised md-primary" ng-click='user.login()'>Login</md-button>
+        <md-button class="md-raised md-primary" ng-click='user.register()'>Register</md-button>
+      </form>
+    </div>
+    <div ng-show='auth.status.isLoggedIn' class="col s12">
+      <p class="flow-text center-align">Welcome! {{user.name}}</p>
+    </div>
+  </md-content>
 </div>
