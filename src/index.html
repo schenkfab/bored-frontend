@@ -14,17 +14,17 @@
     <div ng-cloak>
       <md-content>
         <md-tabs md-dynamic-height md-border-bottom>
-        <md-tab label="Login">
+        <md-tab ng-disabled='auth.status.isLoggedIn' label="Login">
           <md-content class="md-padding">
             <login></login>
           </md-content>
         </md-tab>
-        <md-tab label="Contacts">
+        <md-tab ng-disabled='!auth.status.isLoggedIn' label="Contacts">
           <md-content class="md-padding">
             <contact></contact>
           </md-content>
         </md-tab>
-        <md-tab label="Messages">
+        <md-tab ng-disabled='!auth.status.isLoggedIn' label="Messages">
           <md-content class="md-padding">
             <message></message>
           </md-content>
