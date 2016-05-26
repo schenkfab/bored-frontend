@@ -14,9 +14,14 @@ gulp.task('inject:dev', ['sass:dev', 'js:dev', 'directives:dev', 'fonts:dev'], f
 	var sources = gulp.src(['./.tmp/**/*.js', './.tmp/**/style.css'], {read: false});
 	var sourceVendorJs = gulp.src([
 		'./bower_components/jquery/dist/jquery.js',
-	 	'./bower_components/angular/angular.js'
+	 	'./bower_components/angular/angular.js',
+	 	'./bower_components/angular-aria/angular-aria.js',
+	 	'./bower_components/angular-animate/angular-animate.js',
+	 	'./bower_components/angular-material/angular-material.js'
 	]);
-	var vendorSources = gulp.src(['./.tmp/**/vendors.css', './.tmp/css/*.*'], {read: false});
+	var vendorSources = gulp.src(['./.tmp/**/vendors.css', 
+		'./.tmp/css/*.*', 
+		'./bower_components/angular-material/angular-material.css'], {read: false});
 
 	return target
 		.pipe(inject(vendorSources, {ignorePath: '.tmp', starttag: '<!-- inject:cssVendors -->'}))
