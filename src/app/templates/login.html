@@ -5,17 +5,17 @@
         <md-content layout-gt-sm="row" layout-padding>
           <div>
             <md-input-container class="md-block">
-              <label>Title</label>
+              <label>Name</label>
               <input ng-model="user.name">
             </md-input-container>
             <md-input-container class="md-block">
-              <label>Email</label>
+              <label>Password</label>
               <input ng-model="user.password" type="password">
             </md-input-container>
           </div>
         </md-content>
-        <md-button class="md-raised md-primary" ng-click='user.login()'>Login</md-button>
-        <md-button class="md-raised md-primary" ng-click='user.register()'>Register</md-button>
+        <md-button class="md-raised" ng-click='user.login()'>Login</md-button>
+        <md-button class="md-raised" ng-click='user.register()'>Register</md-button>
       </form>
     </div>
     <div ng-show='auth.status.isLoggedIn' class="col s12">
