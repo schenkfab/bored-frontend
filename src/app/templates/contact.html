@@ -1,9 +1,8 @@
 <md-content>
   <md-subheader class="md-no-sticky">
       Contact list
-    </md-subheader>
+  </md-subheader>
   <md-list>
-    
   <md-divider></md-divider>
     <md-list-item ng-repeat="contact in contacts">
       <p>{{ contact.name }}</p>
@@ -11,9 +10,25 @@
     </md-list-item>
   </md-list>
   <md-divider></md-divider>
-  <md-button class="md-raised" aria-label="Add contact">
-    <span>Add</span>
-  </md-button>
+  <md-content>
+  <br><br>
+  <md-subheader class="md-no-sticky">
+      Add to list
+    </md-subheader>
+    <form>
+      <md-input-container class="md-block">
+        <label>Name</label>
+        <input required name="name" ng-model="contact.searchName">
+      </md-input-container>
+    </form>
+    
+    <md-list>
+        <md-list-item ng-repeat="contact in contact.list">
+          <p>{{ contact.name }}</p>
+          <md-button class="md-secondary" ng-click="doSecondaryAction($event)">Add</md-button>
+        </md-list-item>
+      </md-list>
+  </md-content>
 </md-content>
 
 
