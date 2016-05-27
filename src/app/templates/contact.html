@@ -1,17 +1,19 @@
-<div class="container" ng-repeat='contact in contacts'>
-  <ul class="collection with-header">
-    <li class="collection-header"><h4>Contacts</h4></li>
-    <li ng-repeat='contact in contacts' class="collection-item">
-      <div>{{contact.name}}
-        <a href="#!" class="secondary-content">
-          <i class="material-icons">send</i>
-        </a>
-      </div>
-    </li>
-  </ul>
+<md-content>
+  <md-subheader class="md-no-sticky">
+      Contact list
+    </md-subheader>
+  <md-list>
+    
+  <md-divider></md-divider>
+    <md-list-item ng-repeat="contact in contacts">
+      <p>{{ contact.name }}</p>
+      <md-button class="md-secondary" ng-click="doSecondaryAction($event)">Message</md-button>
+    </md-list-item>
+  </md-list>
+  <md-divider></md-divider>
   <md-button class="md-raised" aria-label="Add contact">
     <span>Add</span>
   </md-button>
-</div>
+</md-content>
 
 
