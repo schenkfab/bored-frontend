@@ -18,14 +18,14 @@
     <form>
       <md-input-container class="md-block">
         <label>Name</label>
-        <input required name="name" ng-model="contact.searchName">
+        <input name="name" autocomplete="off" ng-model="contact.searchName">
       </md-input-container>
     </form>
     
     <md-list>
         <md-list-item ng-repeat="contact in contact.list">
           <p>{{ contact.name }}</p>
-          <md-button class="md-secondary" ng-click="doSecondaryAction($event)">Add</md-button>
+          <md-button class="md-secondary" ng-click="addUserToList(contact)">Add</md-button>
         </md-list-item>
       </md-list>
   </md-content>
