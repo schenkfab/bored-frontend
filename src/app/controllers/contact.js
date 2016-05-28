@@ -13,7 +13,7 @@ angular.module('myApp').controller('contactCtrl', function($scope, $http, userSe
   $scope.$watch('contact', (newValue, oldValue) => {
     if (newValue.searchName) {
       if (newValue.searchName.length > 2) {
-        userService.getUsers(newValue.searchName).then(function(r) { 
+        userService.getUsers(newValue.searchName).then((r) => {
           $scope.contact.list = r;
         });
       } else {
