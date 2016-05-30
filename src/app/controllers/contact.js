@@ -14,6 +14,22 @@ angular.module('myApp').controller('contactCtrl', function($scope, $http, userSe
       });
   };
 
+  $scope.removeFromList = (contact) => {
+    console.log('tst');
+    const contactIds = [];
+    $scope.contacts.forEach((cnt) => {
+      if (cnt._id !== contact._id) {
+        contactIds.push(cnt._id);
+      }
+    });
+
+    userService.addToContactList(contactIds).then((r) => {
+      $scope.contacts = r.data.contacts;
+    }).catch((e) => {
+      console.log(e);
+    });
+  };
+
   $scope.addUserToList = (contact) => {
     // the api expects an array with all the userIds.
     const contactIds = [];
@@ -24,6 +40,7 @@ angular.module('myApp').controller('contactCtrl', function($scope, $http, userSe
 
     userService.addToContactList(contactIds).then((r) => {
       $scope.contacts = r.data.contacts;
+      console.log(r.data);
     }).catch((e) => {
       console.log(e);
     });

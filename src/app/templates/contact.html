@@ -2,11 +2,16 @@
   <md-subheader class="md-no-sticky">
       Contact list
   </md-subheader>
-  <md-list>
   <md-divider></md-divider>
-    <md-list-item ng-repeat="contact in contacts">
+  <md-list>
+    <md-list-item ng-repeat="contact in contacts" class='noright'>
       <p>{{ contact.name }}</p>
-      <md-button class="md-secondary" ng-click="doSecondaryAction($event)">Message</md-button>
+      <md-button class="md-fab" ng-click="removeFromList(contact)" aria-label="Delete">
+        <md-icon md-font-library="material-icons" aria-label="Delete" class="md-secondary">delete</md-icon>
+      </md-button>
+      
+      <!--<md-button class="md-secondary" ng-click="doSecondaryAction($event)">Message</md-button>
+      <md-button class="md-secondary" ng-click="removeUserFromList(contact)">Remove</md-button>-->
     </md-list-item>
   </md-list>
   <md-divider></md-divider>
