@@ -4,7 +4,10 @@ angular.module('myApp').service('userService', function ($http, authenticationSe
 
   this.addToContactList = (contacts) => {
     return $q((resolve, reject) => {
-      $http.post(configService.REST_URLS.addContact, { contacts, token: authenticationService.token }).then(
+      $http.post(configService.REST_URLS.addContact, {
+        contacts,
+        token: authenticationService.token,
+      }).then(
         (response) => {
           resolve(response);
         },
@@ -18,7 +21,9 @@ angular.module('myApp').service('userService', function ($http, authenticationSe
   this.getContactList = () => {
     return $q((resolve, reject) => {
       $http.get(configService.REST_URLS.contacts, {
-        params: { token: authenticationService.token },
+        headers: {
+          token: authenticationService.token,
+        },
       })
       .then(
         (response) => {
@@ -34,7 +39,12 @@ angular.module('myApp').service('userService', function ($http, authenticationSe
   this.getUsers = (query) => {
     return $q((resolve, reject) => {
       $http.get(configService.REST_URLS.users, {
-        params: { token: authenticationService.token, name: query },
+        params: {
+          name: query,
+        },
+        headers: {
+          token: authenticationService.token,
+        },
       })
       .then(
         (response) => {

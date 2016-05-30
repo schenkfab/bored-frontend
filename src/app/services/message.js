@@ -21,7 +21,9 @@ angular.module('myApp').service('messageService', function ($http, $q, authentic
 
   this.getMessages = () => {
     $http.get(configService.REST_URLS.messages, {
-      params: { token: authenticationService.token },
+      headers: {
+        token: authenticationService.token,
+      },
     })
     .then(
       (response) => {
