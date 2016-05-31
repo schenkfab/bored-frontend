@@ -21,9 +21,7 @@ angular.module('myApp').service('authenticationService', function ($http, config
     return $q((resolve, reject) => {
       $http.post(configService.REST_URLS.registration, { name, password }).then(
         (response) => {
-          this.token = response.data.token;
-          this.status.isLoggedIn = true;
-          resolve();
+          resolve(response);
         },
         (error) => {
           reject(error);
