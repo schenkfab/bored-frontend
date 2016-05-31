@@ -12,7 +12,7 @@
 		<!-- endinject -->
 	</head>
 	<body ng-app="myApp" ng-controller='mainCtrl'>
-    <div ng-cloak>
+    <div ng-cloak ng-show='!page.sendmessage'>
       <md-content>
         <md-tabs class="md-accent" md-dynamic-height md-border-bottom>
         <md-tab ng-disabled='auth.status.isLoggedIn' label="Login">
@@ -31,6 +31,11 @@
           </md-content>
         </md-tab>
       </md-tabs>
+      </md-content>
+    </div>
+    <div ng-cloak ng-show='page.sendmessage'>
+      <md-content class="md-padding">
+        <sendmessage></sendmessage>
       </md-content>
     </div>
 		<!-- inject:jsVendor -->

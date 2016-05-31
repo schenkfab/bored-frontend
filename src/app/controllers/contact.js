@@ -30,6 +30,10 @@ angular.module('myApp').controller('contactCtrl', function($scope, $http, userSe
     });
   };
 
+  $scope.sendMessage = (c) => {
+    $scope.page.sendmessage = true;
+  };
+
   $scope.addUserToList = (contact) => {
     // the api expects an array with all the userIds.
     const contactIds = [];

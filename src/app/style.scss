@@ -1,0 +1,17 @@
+.msg-sent {
+  color: green;
+  text-align: right;
+  background-color: #eee;
+  padding: 20px;
+  border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px;
+}
+
+.msg-received {
+  color: red;
+  text-align: left;
+  background-color: #eee;
+  padding: 20px;
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 20px;
+}
