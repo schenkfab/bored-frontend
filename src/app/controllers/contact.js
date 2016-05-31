@@ -36,16 +36,15 @@ angular.module('myApp').controller('contactCtrl', function($scope, $http, userSe
     $scope.contacts.forEach((cnt) => {
       contactIds.push(cnt._id);
     });
-    contactIds.push(contact._id);
-
-    userService.addToContactList(contactIds).then((r) => {
-      $scope.contacts = r.data.contacts;
-      console.log(r.data);
-    }).catch((e) => {
-      console.log(e);
-    });
-
-    console.log(contactIds);
+    if (contactIds.indexOf(contact._id) === -1) {
+      contactIds.push(contact._id);
+      userService.addToContactList(contactIds).then((r) => {
+        $scope.contacts = r.data.contacts;
+        console.log(r.data);
+      }).catch((e) => {
+        console.log(e);
+      });
+    }
   };
 
   $scope.$watch('contact', (newValue, oldValue) => {
