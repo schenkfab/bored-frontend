@@ -1,17 +1,30 @@
 .msg-sent {
-  color: green;
   text-align: right;
-  background-color: #eee;
+  position: absolute;
+  right: 0px;
+  width: 80%;
+  background-color: #3F51B5;
+  color: white;
   padding: 20px;
   border-top-left-radius: 20px;
   border-bottom-left-radius: 20px;
 }
 
 .msg-received {
-  color: red;
   text-align: left;
-  background-color: #eee;
+  position: absolute;
+  left: 0px;
+  width: 80%;
+  background-color: #FFCA28;
   padding: 20px;
   border-top-right-radius: 20px;
   border-bottom-right-radius: 20px;
+}
+
+.bleh {
+  position: fixed;
+}
+
+body {
+  top: 55px;
 }

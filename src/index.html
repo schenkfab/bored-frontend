@@ -12,6 +12,16 @@
 		<!-- endinject -->
 	</head>
 	<body ng-app="myApp" ng-controller='mainCtrl'>
+    <md-toolbar class='md-accent bleh' ng-if="true">
+      <div class="md-toolbar-tools">
+        <md-button ng-show='page.sendmessage' ng-click='page.sendmessage = false;' aria-label="Go Back">
+          Go Back
+        </md-button>
+        <h2>
+          <span>Bored - Messages</span>
+        </h2>
+      </div>
+    </md-toolbar>
     <div ng-cloak ng-show='!page.sendmessage'>
       <md-content>
         <md-tabs class="md-accent" md-dynamic-height md-border-bottom>
