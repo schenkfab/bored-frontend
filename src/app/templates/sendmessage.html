@@ -1,4 +1,4 @@
-<md-content>
+<md-content ng-controller='sendMessageCtrl'>
   <md-subheader class="md-no-sticky md-display-1">
       {{data.receiver.name}}
   </md-subheader>
@@ -14,9 +14,9 @@
     <div layout="row" layout-align="start center">
       <md-input-container class="md-block reply-message">
         <label>Message</label>
-        <textarea ng-model="reply.text" rows="3"></textarea>
+        <textarea ng-model="data.reply" rows="3"></textarea>
       </md-input-container>
-      <md-button class='md-raised md-accent'>Send</md-button>
+      <md-button class='md-raised' ng-click='data.send()'>Send</md-button>
     </div>
   </md-content>
 </md-content>
