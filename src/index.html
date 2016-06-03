@@ -14,7 +14,7 @@
 	<body ng-app="myApp" ng-controller='mainCtrl'>
     <md-toolbar class='md-accent bleh' ng-if="true">
       <div class="md-toolbar-tools">
-        <md-button ng-show='page.sendmessage' ng-click='page.sendmessage = false;' aria-label="Go Back">
+        <md-button ng-show='(page.page.name == "SendMessage")' ng-click='page.setPage({name: "login"});' aria-label="Go Back">
           Go Back
         </md-button>
         <h2>
@@ -22,7 +22,7 @@
         </h2>
       </div>
     </md-toolbar>
-    <div ng-cloak ng-show='!page.sendmessage'>
+    <div ng-cloak ng-show='!(page.page.name == "SendMessage")'>
       <md-content>
         <md-tabs class="md-accent" md-dynamic-height md-border-bottom>
         <md-tab ng-disabled='auth.status.isLoggedIn' label="Login">
@@ -43,7 +43,7 @@
       </md-tabs>
       </md-content>
     </div>
-    <div ng-cloak ng-show='page.sendmessage'>
+    <div ng-cloak ng-show='(page.page.name == "SendMessage")'>
       <md-content>
         <sendmessage></sendmessage>
       </md-content>

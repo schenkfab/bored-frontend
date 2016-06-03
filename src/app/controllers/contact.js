@@ -1,11 +1,13 @@
 /* eslint no-param-reassign: ["error", { "props": false }]*/
 
-angular.module('myApp').controller('contactCtrl', function($scope, $http, userService, authenticationService) {
+angular.module('myApp').controller('contactCtrl', function($scope, $http, userService, authenticationService, pageService) {
   $scope.contacts = [];
   $scope.contact = {};
   $scope.contact.searchName = null;
   $scope.contact.list = [];
   $scope.auth = authenticationService;
+
+  $scope.page = pageService;
 
   $scope.getContacts = () => {
     userService.getContactList()
@@ -31,7 +33,7 @@ angular.module('myApp').controller('contactCtrl', function($scope, $http, userSe
   };
 
   $scope.sendMessage = (c) => {
-    $scope.page.sendmessage = true;
+    $scope.page.setPage({ name: 'SendMessage', user: c });
   };
 
   $scope.addUserToList = (contact) => {

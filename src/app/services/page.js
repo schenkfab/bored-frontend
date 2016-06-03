@@ -1,11 +1,11 @@
 angular.module('myApp').service('pageService', function() {
-	this.page = '';
+  this.page = {};
 
-	this.setCurrentPage = function(page) {
-		this.page = page;
-	};
+  this.setPage = (page) => {
+    this.page = page;
+  };
 
-	this.getCurrentPage = function() {
-		return this.page;
-	};
+  this.getPage = () => {
+    return this.page;
+  };
 });

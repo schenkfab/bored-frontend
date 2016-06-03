@@ -1,9 +1,9 @@
 <md-content>
   <md-subheader class="md-no-sticky md-display-1">
-      {{data.receiver}}
+      {{data.receiver.name}}
   </md-subheader>
   <md-list-item class="md-3-line" ng-repeat='message in data.messages'>
-    <div class="md-accent md-list-item-text" ng-class='{"msg-sent": message.sent, "msg-received": !message.sent}'>
+    <div class="md-accent md-list-item-text" ng-class='{"msg-received": message.sender._id === data.receiver._id, "msg-sent": message.receiver._id === data.receiver._id}'>
       <h3></h3>
       <p>
         {{message.message}}

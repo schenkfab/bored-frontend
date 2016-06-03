@@ -19,6 +19,23 @@ angular.module('myApp').service('messageService', function ($http, $q, authentic
     });
   };
 
+  this.getMessagesByUser = (userId) => {
+    return $q((resolve, reject) => {
+      $http.get(`${configService.REST_URLS.messages}/${userId}`, {
+        headers: {
+          token: authenticationService.token,
+        },
+      })
+      .then(
+        (response) => {
+          resolve(response);
+        },
+        (error) => {
+          reject(error);
+        });
+    });
+  };
+
   this.getMessages = () => {
     $http.get(configService.REST_URLS.messages, {
       headers: {
