@@ -1,7 +1,4 @@
 <md-content class='msg-page' ng-controller='sendMessageCtrl'>
-  <md-subheader class="md-no-sticky md-display-1">
-      {{data.receiver.name}}
-  </md-subheader>
     <md-list-item class="md-3-line" ng-repeat='message in data.messages | limitTo:-5'>
       <div class="md-accent md-list-item-text" ng-class='{"msg-received": message.sender._id === data.receiver._id, "msg-sent": message.receiver._id === data.receiver._id}'>
         <h3></h3>

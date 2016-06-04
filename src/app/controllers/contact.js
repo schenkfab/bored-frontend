@@ -32,7 +32,7 @@ angular.module('myApp').controller('contactCtrl', function($scope, $http, userSe
   };
 
   $scope.sendMessage = (c) => {
-    $scope.page.setPage({ name: 'SendMessage', user: c });
+    $scope.page.setPage({ name: 'SendMessage', user: c, title: c.name });
   };
 
   $scope.addUserToList = (contact) => {
