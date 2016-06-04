@@ -14,11 +14,9 @@ angular.module('myApp')
         receiver: $scope.data.receiver._id,
       })
       .then((response) => {
-        console.log(response);
         messageService.getMessagesByUser($scope.data.receiver._id)
-        .then((response) => {
-          console.log(response);
-          $scope.data.messages = response.data;
+        .then((resp) => {
+          $scope.data.messages = resp.data;
         });
       });
     },

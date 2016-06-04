@@ -17,7 +17,6 @@ angular.module('myApp').controller('contactCtrl', function($scope, $http, userSe
   };
 
   $scope.removeFromList = (contact) => {
-    console.log('tst');
     const contactIds = [];
     $scope.contacts.forEach((cnt) => {
       if (cnt._id !== contact._id) {
@@ -46,7 +45,6 @@ angular.module('myApp').controller('contactCtrl', function($scope, $http, userSe
       contactIds.push(contact._id);
       userService.addToContactList(contactIds).then((r) => {
         $scope.contacts = r.data.contacts;
-        console.log(r.data);
       }).catch((e) => {
         console.log(e);
       });
