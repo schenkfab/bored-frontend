@@ -21,6 +21,7 @@ angular.module('myApp')
 
   $scope.reply = (msg) => {
     console.log(msg);
+    $scope.page.setPage({ name: 'SendMessage', user: msg.sender, title: msg.sender.name });
   };
 
   $scope.delete = (msg) => {
