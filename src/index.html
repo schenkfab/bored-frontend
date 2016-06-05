@@ -12,7 +12,7 @@
 		<!-- endinject -->
 	</head>
 	<body ng-app="myApp" ng-controller='mainCtrl'>
-    <md-toolbar class='md-accent bleh' ng-if="true">
+    <md-toolbar class='md-accent bleh' ng-if="true" ng-cloak>
       <div class="md-toolbar-tools">
         <md-button ng-show='(page.page.name == "SendMessage")' ng-click='page.setPage({name: "login"});' aria-label="Go Back">
           Go Back
