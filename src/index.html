@@ -35,7 +35,7 @@
             <contact></contact>
           </md-content>
         </md-tab>
-        <md-tab ng-disabled='!auth.status.isLoggedIn' label="Messages">
+        <md-tab ng-disabled='!auth.status.isLoggedIn' label="{{'Messages (' + unreadMessages + ')'}}">
           <md-content class="md-padding">
             <message></message>
           </md-content>

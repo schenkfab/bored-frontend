@@ -1,6 +1,8 @@
 angular.module('myApp').service('messageService', function ($http, $q, authenticationService, configService) {
 
-  this.messages = [];
+  this.msg = {};
+  this.msg.messages = [];
+  this.msg.unreadMessages = 0;
 
   this.sendMessage = (message) => {
     return $q((resolve, reject) => {
@@ -44,7 +46,13 @@ angular.module('myApp').service('messageService', function ($http, $q, authentic
     })
     .then(
       (response) => {
-        this.messages = response.data;
+        this.msg.unreadMessages = 0;
+        this.msg.messages = response.data;
+        this.msg.messages.forEach((msg) => {
+          if (!msg.isRead) {
+            this.msg.unreadMessages++;
+          }
+        });
       },
       (error) => {
         console.log(error);

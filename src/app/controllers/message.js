@@ -13,7 +13,7 @@ angular.module('myApp')
     }
   }, true);
 
-  $scope.$watch('ms', (newValue, oldValue) => {
+  $scope.$watch('ms.msg', (newValue, oldValue) => {
     if (newValue !== oldValue) {
       $scope.messages = newValue.messages;
     }
