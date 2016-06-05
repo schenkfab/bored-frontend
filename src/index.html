@@ -13,12 +13,12 @@
 	</head>
 	<body ng-app="myApp" ng-controller='mainCtrl'>
     <md-toolbar class='md-accent bleh' ng-if="true" ng-cloak>
-      <div class="md-toolbar-tools">
+      <div class="md-toolbar-tools" ng-cloak>
         <md-button ng-show='(page.page.name == "SendMessage")' ng-click='page.setPage({name: "login"});' aria-label="Go Back">
           Go Back
         </md-button>
         <h2>
-          <span>{{page.page.title || "Bored"}}</span>
+          <span ng-cloak>{{page.page.title || "Bored"}}</span>
         </h2>
       </div>
     </md-toolbar>

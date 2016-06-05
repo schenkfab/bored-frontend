@@ -20,11 +20,15 @@ angular.module('myApp')
   }, true);
 
   $scope.reply = (msg) => {
-    console.log(msg);
-    $scope.page.setPage({ name: 'SendMessage', user: msg.sender, title: msg.sender.name });
-  };
-
-  $scope.delete = (msg) => {
-    console.log(msg);
+    // First set the message as read if it isnt already and than switch to SendMessage page
+    if (msg.isRead) {
+      $scope.page.setPage({ name: 'SendMessage', user: msg.sender, title: msg.sender.name });
+    } else {
+      $scope.ms.setRead(msg._id)
+      .then((response) => {
+        msg.isRead = true;
+        $scope.page.setPage({ name: 'SendMessage', user: msg.sender, title: msg.sender.name });
+      });
+    }
   };
 });
