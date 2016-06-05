@@ -1,6 +1,6 @@
 <md-content class='msg-page' ng-controller='sendMessageCtrl'>
   <div layout="row" layout-align="center center">
-    <md-button ng-click='showMore()'>Show more</md-button>
+    <md-button ng-click='showMore()' ng-show='-(1*(messageLimit)) < data.messages.length'>Show more</md-button>
   </div>
   <md-list-item class="md-3-line" ng-repeat='message in data.messages | limitTo:messageLimit'>
     <div class="md-accent md-list-item-text" ng-class='{"msg-received": message.sender._id === data.receiver._id, "msg-sent": message.receiver._id === data.receiver._id}'>
