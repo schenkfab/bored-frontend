@@ -27,7 +27,11 @@ angular.module('myApp')
       $scope.ms.setRead(msg._id)
       .then((response) => {
         msg.isRead = true;
-        $scope.page.setPage({ name: 'SendMessage', user: msg.sender, title: msg.sender.name });
+        $scope.page.setPage({
+          name: 'SendMessage',
+          user: msg.sender,
+          title: msg.sender.name,
+        });
       });
     }
   };
