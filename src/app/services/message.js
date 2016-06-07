@@ -1,4 +1,4 @@
-angular.module('myApp').service('messageService', function ($http, $q, authenticationService, configService) {
+angular.module('myApp').service('messageService', function ($http, $q, cacheService, authenticationService, configService) {
 
   this.msg = {};
   this.msg.messages = [];
@@ -60,6 +60,22 @@ angular.module('myApp').service('messageService', function ($http, $q, authentic
         (error) => {
           reject(error);
         });
+    });
+  };
+
+  this.getMessagesFromCache = () => {
+    cacheService.cacheMiddleware(configService.REST_URLS.messages)
+    .then((response) => {
+      // data was found in cache.
+      // First use the cached data
+      this.msg.messages = response.data;
+      // As the cached data is now displayed,
+      // get the new data from the API.
+      this.getMessages();
+    })
+    .catch((error) => {
+      // data was not found in cache.
+      this.getMessages();
     });
   };
 
