@@ -4,6 +4,11 @@ angular.module('myApp')
 .controller('sendMessageCtrl', function($scope, authenticationService, pageService, messageService) {
   $scope.auth = authenticationService;
   $scope.page = pageService;
+  $scope.messageLimit = -5;
+
+  $scope.showMore = () => {
+    $scope.messageLimit -= 5;
+  };
 
   $scope.data = {
     receiver: { name: 'Hans', _id: '' },

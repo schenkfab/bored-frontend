@@ -3,16 +3,21 @@
   position: absolute;
   right: 0px;
   width: 80%;
-  background-color: #3F51B5;
-  color: white;
-  padding: 20px;
-  border-top-left-radius: 20px;
+  background-color: rgb(255,215,64);
+  color: black;
+  padding: 10px;
+  border-top-left-radius: 10px;
   border-bottom-left-radius: 20px;
-  box-shadow: 5px 5px 2px #c0c0c0;
+  box-shadow: 2px 2px 1px #c0c0c0;
+}
+
+.unread-msg {
+  background-color: rgb(255,215,64);
 }
 
 .msg-page {
   padding-top: 80px;
+  padding-top: 65px;
   padding-bottom: 100px;
 }
 
@@ -21,11 +26,11 @@
   position: absolute;
   left: 0px;
   width: 80%;
-  background-color: #FFCA28;
-  padding: 20px;
+  background-color: rgb(255,215,64);
+  padding: 10px;
   border-top-right-radius: 20px;
-  border-bottom-right-radius: 20px;
-  box-shadow: 5px 5px 2px #c0c0c0;
+  border-bottom-right-radius: 10px;
+  box-shadow: 2px 2px 1px #c0c0c0;
 }
 
 .bleh {

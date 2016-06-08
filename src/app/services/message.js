@@ -1,6 +1,8 @@
-angular.module('myApp').service('messageService', function ($http, $q, authenticationService, configService) {
+angular.module('myApp').service('messageService', function ($http, $q, cacheService, authenticationService, configService) {
 
-  this.messages = [];
+  this.msg = {};
+  this.msg.messages = [];
+  this.msg.unreadMessages = 0;
 
   this.sendMessage = (message) => {
     return $q((resolve, reject) => {
@@ -11,6 +13,31 @@ angular.module('myApp').service('messageService', function ($http, $q, authentic
       })
       .then(
         (response) => {
+          resolve(response);
+        },
+        (error) => {
+          reject(error);
+        });
+    });
+  };
+
+  this.countUnread = () => {
+    this.msg.unreadMessages = 0;
+    this.msg.messages.forEach((msg) => {
+      if (!msg.isRead) {
+        this.msg.unreadMessages++;
+      }
+    });
+  };
+
+  this.setRead = (messageId) => {
+    return $q((resolve, reject) => {
+      $http.put(`${configService.REST_URLS.messages}/${messageId}/isread`, {
+        token: authenticationService.token,
+      })
+      .then(
+        (response) => {
+          this.msg.unreadMessages--;
           resolve(response);
         },
         (error) => {
@@ -36,6 +63,22 @@ angular.module('myApp').service('messageService', function ($http, $q, authentic
     });
   };
 
+  this.getMessagesFromCache = () => {
+    cacheService.cacheMiddleware(configService.REST_URLS.messages)
+    .then((response) => {
+      // data was found in cache.
+      // First use the cached data
+      this.msg.messages = response.data;
+      // As the cached data is now displayed,
+      // get the new data from the API.
+      this.getMessages();
+    })
+    .catch((error) => {
+      // data was not found in cache.
+      this.getMessages();
+    });
+  };
+
   this.getMessages = () => {
     $http.get(configService.REST_URLS.messages, {
       headers: {
@@ -44,7 +87,8 @@ angular.module('myApp').service('messageService', function ($http, $q, authentic
     })
     .then(
       (response) => {
-        this.messages = response.data;
+        this.msg.messages = response.data;
+        this.countUnread();
       },
       (error) => {
         console.log(error);

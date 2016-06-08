@@ -12,7 +12,12 @@ angular.module('myApp').controller('contactCtrl', function($scope, $http, userSe
   $scope.getContacts = () => {
     userService.getContactList()
       .then((response) => {
-        $scope.contacts = response[0].contacts;
+        if (response.length > 0) {
+          $scope.contacts = response[0].contacts;
+        }
+      })
+      .catch((e) => {
+        console.log(e);
       });
   };
 
