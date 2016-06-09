@@ -1,4 +1,4 @@
-angular.module('myApp').service('userService', function ($q) {
+angular.module('myApp').service('cacheService', function ($q) {
   this.cacheMiddleware = (url) => {
     return $q((resolve, reject) => {
       if ('caches' in window) {
