@@ -9,7 +9,7 @@ angular.module('myApp')
 
   $scope.$watch('auth', (newValue, oldValue) => {
     if (newValue.token && newValue.token !== oldValue.token) {
-      $scope.ms.getMessages();
+      $scope.ms.getMessagesFromCache();
     }
   }, true);
 

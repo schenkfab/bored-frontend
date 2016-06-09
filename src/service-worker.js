@@ -33,7 +33,7 @@ self.addEventListener('activate', (e) => {
 // service worker here.
 self.addEventListener('fetch', (e) => {
   console.log('[ServiceWorker] Fetch', e.request.url);
-  const dataUrl = 'TBD';
+  const dataUrl = 'http://localhost:8080';
   if (e.request.url.indexOf(dataUrl) === 0) {
     e.respondWith(
       fetch(e.request)
