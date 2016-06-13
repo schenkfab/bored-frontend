@@ -68,6 +68,7 @@ angular.module('myApp').service('messageService', function ($http, $q, cacheServ
     .then((response) => {
       // data was found in cache.
       // First use the cached data
+      console.log(response.data);
       this.msg.messages = response.data;
       // As the cached data is now displayed,
       // get the new data from the API.

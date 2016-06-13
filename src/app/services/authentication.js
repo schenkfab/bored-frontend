@@ -1,4 +1,4 @@
-angular.module('myApp').service('authenticationService', function ($http, configService, $q) {
+angular.module('myApp').service('authenticationService', function ($http, $window, configService, $q) {
   this.token = null;
   this.status = { isLoggedIn: false };
 
@@ -7,6 +7,7 @@ angular.module('myApp').service('authenticationService', function ($http, config
       $http.post(configService.REST_URLS.authentication, { name, password }).then(
         (response) => {
           this.token = response.data.token;
+          $window.localStorage.setItem('jwt', response.data.token);
           this.status.isLoggedIn = true;
           resolve();
         },
