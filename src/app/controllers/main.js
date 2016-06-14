@@ -17,8 +17,8 @@ angular.module('myApp').controller('mainCtrl', (authenticationService, $scope, p
   });
 
   $scope.$watch('auth', (newValue, oldValue) => {
-    if (newValue.token && newValue.token !== oldValue.token) {
-      $scope.ms.getMessages();
+    if (newValue.token) {
+      $scope.messageService.getMessagesFromCache();
     }
   }, true);
 });

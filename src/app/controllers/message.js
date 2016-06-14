@@ -7,12 +7,6 @@ angular.module('myApp')
   $scope.messages = $scope.ms.messages;
   $scope.page = pageService;
 
-  $scope.$watch('auth', (newValue, oldValue) => {
-    if (newValue.token && newValue.token !== oldValue.token) {
-      $scope.ms.getMessagesFromCache();
-    }
-  }, true);
-
   $scope.$watch('ms.msg', (newValue, oldValue) => {
     if (newValue !== oldValue) {
       $scope.messages = newValue.messages;

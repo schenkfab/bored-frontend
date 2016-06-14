@@ -63,23 +63,6 @@ angular.module('myApp').service('messageService', function ($http, $q, cacheServ
     });
   };
 
-  this.getMessagesFromCache = () => {
-    cacheService.cacheMiddleware(configService.REST_URLS.messages)
-    .then((response) => {
-      // data was found in cache.
-      // First use the cached data
-      console.log(response.data);
-      this.msg.messages = response.data;
-      // As the cached data is now displayed,
-      // get the new data from the API.
-      this.getMessages();
-    })
-    .catch((error) => {
-      // data was not found in cache.
-      this.getMessages();
-    });
-  };
-
   this.getMessages = () => {
     $http.get(configService.REST_URLS.messages, {
       headers: {
@@ -95,5 +78,22 @@ angular.module('myApp').service('messageService', function ($http, $q, cacheServ
         console.log(error);
       }
     );
+  };
+
+  this.getMessagesFromCache = () => {
+    cacheService.cacheMiddleware(configService.REST_URLS.messages)
+    .then((response) => {
+      // data was found in cache.
+      // First use the cached data
+      console.log(response.data);
+      this.msg.messages = response.data;
+      // As the cached data is now displayed,
+      // get the new data from the API.
+      this.getMessages();
+    })
+    .catch((error) => {
+      // data was not found in cache.
+      this.getMessages();
+    });
   };
 });

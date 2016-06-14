@@ -7,6 +7,7 @@ angular.module('myApp').service('cacheService', function ($q) {
             console.log('getting data from cache');
             resolve(response);
           } else {
+            console.log('getting data from network');
             reject('Not cached');
           }
         });
