@@ -1,6 +1,23 @@
 const cacheName = 'bored-v1';
 const dataCacheName = 'boredData-v1';
-const filesToCache = [];
+const filesToCache = ['/app/style.css',
+                      '/app/vendors.css',
+                      '/app/main.js',
+                      '/app/controllers/contact.js',
+                      '/app/controllers/login.js',
+                      '/app/controllers/main.js',
+                      '/app/controllers/message.js',
+                      '/app/controllers/sendmessage.js',
+                      '/app/directives/contact.js',
+                      '/app/directives/login.js',
+                      '/app/directives/message.js',
+                      '/app/directives/sendmessage.js',
+                      '/app/services/authentication.js',
+                      '/app/services/cacheService.js',
+                      '/app/services/config.js',
+                      '/app/services/message.js',
+                      '/app/services/page.js',
+                      '/app/services/user.js'];
 
 self.addEventListener('install', (e) => {
   console.log('[ServiceWorker] Install');
