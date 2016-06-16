@@ -9,7 +9,7 @@ angular.module('myApp', ['ngMaterial'])
 if ('serviceWorker' in navigator) {
   navigator.serviceWorker
     .register('./service-worker.js')
-    .than(() => {
+    .then(() => {
       console.log('Service worker Registred');
     });
 }
