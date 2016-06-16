@@ -22,7 +22,7 @@ angular.module('myApp').service('userService', function ($http, authenticationSe
     return $q((resolve, reject) => {
       $http.get(configService.REST_URLS.contacts, {
         headers: {
-          token: authenticationService.token,
+          'x-access-token': authenticationService.token,
         },
       })
       .then(

@@ -72,7 +72,7 @@ self.addEventListener('fetch', (e) => {
       fetch(e.request)
         .then((response) => {
           return caches.open(dataCacheName).then((cache) => {
-            cache.put(e.request.url, response.clone());
+            cache.put(e.request, response.clone());
             console.log('[ServiceWorker] Fetched&Cached Data');
             return response;
           });
