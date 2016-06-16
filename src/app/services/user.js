@@ -27,7 +27,50 @@ angular.module('myApp').service('userService', function ($http, authenticationSe
       })
       .then(
         (response) => {
+
+          // Store in IndexedDb
+          // Set the last searched connection:
+    // var _dbPromise = idb.open('publictransportation', 1, upgradeDb => {
+    //   upgradeDb.createObjectStore('connections', {'keyPath': 'id'});
+    // }).then(db => {
+    //   return db.transaction('connections').objectStore('connections').getAll();
+    // }).then(connections => {
+    //   if (connections.length > 0)
+    //   {
+    //     $scope.connections = connections;
+    //     $scope.searchFields.to = connections[0].to.location.name;
+    //     $scope.searchFields.from = connections[0].from.location.name;
+    //     $scope.$apply();
+    //   }
+    // });
+
+
+    //       idb.open('bored', 1, upgradeDb => {
+    //         upgradeDb.createObjectStore('connections', {'keyPath': 'id'});
+    //       }).then(db =>{
+    //         var tx = db.transaction('connections', 'readwrite');
+    //         var connectionStore = tx.objectStore('connections');
+    //         connectionStore.clear();
+    //         response.data.connections.forEach((con, i) => {
+    //           con.id = i;
+    //           connectionStore.put(con);
+    //         });
+    //         return tx.complete;
+    //       }).then(() => {
+    //         //console.log('done')
+    //       });
+
+
+
           resolve(response.data);
+
+
+
+
+
+
+
+
         },
         (error) => {
           reject(error);

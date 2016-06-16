@@ -68,7 +68,8 @@ self.addEventListener('fetch', (e) => {
   console.log('[ServiceWorker] Fetch', e.request.url);
   const dataUrl = 'http://localhost:8080';
   if (e.request.url.indexOf(dataUrl) === 0) {
-    e.respondWith(
+    // Commet out the caching of api requests. This will be done using indexedDb.
+    /* e.respondWith(
       fetch(e.request)
         .then((response) => {
           return caches.open(dataCacheName).then((cache) => {
@@ -77,7 +78,7 @@ self.addEventListener('fetch', (e) => {
             return response;
           });
         })
-    );
+    );*/
   } else {
     e.respondWith(
       caches.match(e.request).then((response) => {
