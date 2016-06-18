@@ -27,6 +27,19 @@ angular.module('myApp').service('userService', function ($http, authenticationSe
       })
       .then(
         (response) => {
+          // Store in IndexedDb
+          idb.open('bored-data', 1, upgradeDb => {
+            upgradeDb.createObjectStore('contacts', { keyPath: 'userName' });
+          }).then(db => {
+            const tx = db.transaction('contacts', 'readwrite');
+            const contactsStore = tx.objectStore('contacts');
+            const obj = {
+              userName: authenticationService.name,
+              contacts: response.data,
+            };
+            contactsStore.put(obj);
+            return tx.complete;
+          });
 
           // Store in IndexedDb
           // Set the last searched connection:
@@ -43,34 +56,7 @@ angular.module('myApp').service('userService', function ($http, authenticationSe
     //     $scope.$apply();
     //   }
     // });
-
-
-    //       idb.open('bored', 1, upgradeDb => {
-    //         upgradeDb.createObjectStore('connections', {'keyPath': 'id'});
-    //       }).then(db =>{
-    //         var tx = db.transaction('connections', 'readwrite');
-    //         var connectionStore = tx.objectStore('connections');
-    //         connectionStore.clear();
-    //         response.data.connections.forEach((con, i) => {
-    //           con.id = i;
-    //           connectionStore.put(con);
-    //         });
-    //         return tx.complete;
-    //       }).then(() => {
-    //         //console.log('done')
-    //       });
-
-
-
           resolve(response.data);
-
-
-
-
-
-
-
-
         },
         (error) => {
           reject(error);
