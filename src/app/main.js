@@ -1,3 +1,5 @@
+/* eslint no-param-reassign: ["error", { "props": false }]*/
+
 const app = angular.module('myApp', ['ngMaterial'])
 .config(($mdThemingProvider) => {
   $mdThemingProvider.theme('default')
@@ -5,21 +7,21 @@ const app = angular.module('myApp', ['ngMaterial'])
     .accentPalette('amber');
 });
 
-app.run(function($window, $rootScope) {
+app.run(($window, $rootScope) => {
   $rootScope.online = navigator.onLine;
-  $window.addEventListener("offline", function() {
-        $rootScope.$apply(function() {
-            console.log($rootScope.online);
-            $rootScope.online = false;
-        });
-      }, false);
+  $window.addEventListener('offline', () => {
+    $rootScope.$apply(() => {
+      console.log($rootScope.online);
+      $rootScope.online = false;
+    });
+  }, false);
 
-      $window.addEventListener("online", function() {
-        $rootScope.$apply(function() {
-            console.log($rootScope.online);
-          $rootScope.online = true;
-        });
-      }, false);
+  $window.addEventListener('online', () => {
+    $rootScope.$apply(() => {
+      console.log($rootScope.online);
+      $rootScope.online = true;
+    });
+  }, false);
 });
 
 // Register service worker
