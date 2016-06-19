@@ -1,6 +1,6 @@
 /* eslint no-param-reassign: ["error", { "props": false }]*/
 
-angular.module('myApp').controller('contactCtrl', function($scope, $http, userService, authenticationService, pageService) {
+angular.module('myApp').controller('contactCtrl', function($rootScope, $scope, $http, userService, authenticationService, pageService) {
   $scope.contacts = [];
   $scope.contact = {};
   $scope.contact.searchName = null;
@@ -10,7 +10,7 @@ angular.module('myApp').controller('contactCtrl', function($scope, $http, userSe
   $scope.page = pageService;
 
   $scope.getContacts = () => {
-    userService.getContactList()
+    userService.getContactList($rootScope.online)
       .then((response) => {
         if (response.length > 0) {
           $scope.contacts = response[0].contacts;

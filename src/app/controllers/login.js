@@ -8,6 +8,7 @@ angular.module('myApp').controller('loginCtrl', function($location, $window, $sc
 
   if (jwt) {
     $scope.auth.token = jwt;
+    $scope.auth.name = $window.localStorage.getItem('name');
     $scope.auth.status.isLoggedIn = true;
   }
 

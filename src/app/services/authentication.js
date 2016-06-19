@@ -10,6 +10,7 @@ angular.module('myApp').service('authenticationService', function ($http, $windo
           this.name = name;
           this.token = response.data.token;
           $window.localStorage.setItem('jwt', response.data.token);
+          $window.localStorage.setItem('name', name);
           this.status.isLoggedIn = true;
           resolve();
         },
