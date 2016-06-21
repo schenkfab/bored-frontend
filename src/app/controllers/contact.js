@@ -6,11 +6,12 @@ angular.module('myApp').controller('contactCtrl', function($rootScope, $scope, $
   $scope.contact.searchName = null;
   $scope.contact.list = [];
   $scope.auth = authenticationService;
+  $scope.isOn = navigator.onLine;
 
   $scope.page = pageService;
 
   $scope.getContacts = () => {
-    userService.getContactList($rootScope.online)
+    userService.getContactList($scope.isOn)
       .then((response) => {
         if (response.length > 0) {
           $scope.contacts = response[0].contacts;
@@ -55,6 +56,12 @@ angular.module('myApp').controller('contactCtrl', function($rootScope, $scope, $
       });
     }
   };
+
+  $scope.$watch('isOn', (newValue, oldValue) => {
+    if (newValue) {
+      $scope.getContacts();
+    }
+  });
 
   $scope.$watch('contact', (newValue, oldValue) => {
     if (newValue.searchName) {

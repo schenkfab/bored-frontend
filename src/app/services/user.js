@@ -29,7 +29,7 @@ angular.module('myApp').service('userService', function ($http, authenticationSe
         .then(
           (response) => {
             // Store in IndexedDb
-            idb.open('bored-data', 1, upgradeDb => {
+            idb.open('bored-data-contacts', 1, upgradeDb => {
               upgradeDb.createObjectStore('contactList', { keyPath: 'name' });
             }).then(db => {
               const tx = db.transaction('contactList', 'readwrite');
@@ -50,7 +50,7 @@ angular.module('myApp').service('userService', function ($http, authenticationSe
         );
       } else {
         // there is no internet connection, therefor get from cache.
-        idb.open('bored-data', 1, upgradeDb => {
+        idb.open('bored-data-contacts', 1, upgradeDb => {
           upgradeDb.createObjectStore('contactList', { keyPath: 'name' });
         }).then(db => {
           return db.transaction('contactList').objectStore('contactList').get(authenticationService.name);

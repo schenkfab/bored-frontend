@@ -13,7 +13,7 @@ var gutil = require('gulp-util');
 
 const tmpPath = './tmp';
 
-gulp.task('inject:dev', ['sass:dev', 'js:dev', 'directives:dev', 'fonts:dev'], function () {
+gulp.task('inject:dev', ['manifest:dev', 'sass:dev', 'js:dev', 'directives:dev', 'fonts:dev'], function () {
 	var target = gulp.src('./src/index.html');
 	var sources = gulp.src(['./.tmp/**/*.js', './.tmp/**/style.css'], {read: false});
 	var sourceVendorJs = gulp.src([
@@ -44,6 +44,11 @@ gulp.task('fonts:dev', function () {
 gulp.task('directives:dev', function() {
 	return gulp.src('./src/app/**/*.html')
 		.pipe(gulp.dest('./.tmp/app'));
+});
+
+gulp.task('manifest:dev', function() {
+	return gulp.src('./src/manifest.json')
+		.pipe(gulp.dest('./.tmp'));
 });
 
 gulp.task('sass:dev', function() {

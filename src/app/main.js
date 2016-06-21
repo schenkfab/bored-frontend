@@ -11,14 +11,12 @@ app.run(($window, $rootScope) => {
   $rootScope.online = navigator.onLine;
   $window.addEventListener('offline', () => {
     $rootScope.$apply(() => {
-      console.log($rootScope.online);
       $rootScope.online = false;
     });
   }, false);
 
   $window.addEventListener('online', () => {
     $rootScope.$apply(() => {
-      console.log($rootScope.online);
       $rootScope.online = true;
     });
   }, false);

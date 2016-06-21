@@ -13,7 +13,6 @@ const filesToCache = ['/index.html',
                       '/app/controllers/sendmessage.js',
                       '/app/directives/_template.js',
                       '/app/directives/contact.js',
-                      '/app/directives/myRepeatDirective.js',
                       '/app/directives/login.js',
                       '/app/directives/message.js',
                       '/app/directives/sendmessage.js',
@@ -65,26 +64,11 @@ self.addEventListener('activate', (e) => {
 // handled within the application and not in the
 // service worker here.
 self.addEventListener('fetch', (e) => {
-  console.log('[ServiceWorker] Fetch', e.request.url);
-  const dataUrl = 'http://localhost:8080';
-  if (e.request.url.indexOf(dataUrl) === 0) {
-    // Commet out the caching of api requests. This will be done using indexedDb.
-    /* e.respondWith(
-      fetch(e.request)
-        .then((response) => {
-          return caches.open(dataCacheName).then((cache) => {
-            cache.put(e.request, response.clone());
-            console.log('[ServiceWorker] Fetched&Cached Data');
-            return response;
-          });
-        })
-    );*/
-  } else {
-    e.respondWith(
-      caches.match(e.request).then((response) => {
-        return response || fetch(e.request);
-      })
-    );
-  }
+  // console.log('[ServiceWorker] Fetch', e.request.url);
+  e.respondWith(
+    caches.match(e.request).then((response) => {
+      return response || fetch(e.request);
+    })
+  );
 });
 

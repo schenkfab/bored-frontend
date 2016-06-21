@@ -23,11 +23,13 @@ angular.module('myApp').service('messageService', function ($http, $q, cacheServ
 
   this.countUnread = () => {
     this.msg.unreadMessages = 0;
-    this.msg.messages.forEach((msg) => {
-      if (!msg.isRead) {
-        this.msg.unreadMessages++;
-      }
-    });
+    if (this.msg.messages.length > 0) {
+      this.msg.messages.forEach((msg) => {
+        if (!msg.isRead) {
+          this.msg.unreadMessages++;
+        }
+      });
+    }
   };
 
   this.setRead = (messageId) => {
@@ -63,37 +65,44 @@ angular.module('myApp').service('messageService', function ($http, $q, cacheServ
     });
   };
 
-  this.getMessages = () => {
-    $http.get(configService.REST_URLS.messages, {
-      headers: {
-        token: authenticationService.token,
-      },
-    })
-    .then(
-      (response) => {
-        this.msg.messages = response.data;
-        this.countUnread();
-      },
-      (error) => {
-        console.log(error);
-      }
-    );
-  };
-
-  this.getMessagesFromCache = () => {
-    cacheService.cacheMiddleware(configService.REST_URLS.messages)
-    .then((response) => {
-      // data was found in cache.
-      // First use the cached data
-      console.log(response.data);
-      this.msg.messages = response.data;
-      // As the cached data is now displayed,
-      // get the new data from the API.
-      this.getMessages();
-    })
-    .catch((error) => {
-      // data was not found in cache.
-      this.getMessages();
-    });
+  this.getMessages = (isOnline) => {
+    if (isOnline) {
+      $http.get(configService.REST_URLS.messages, {
+        headers: {
+          token: authenticationService.token,
+        },
+      })
+      .then(
+        (response) => {
+          // Store in IndexedDb
+          idb.open('bored-data', 1, upgradeDb => {
+            upgradeDb.createObjectStore('messageList', { keyPath: 'name' });
+          }).then(db => {
+            const tx = db.transaction('messageList', 'readwrite');
+            const contactsStore = tx.objectStore('messageList');
+            const obj = {
+              name: authenticationService.name,
+              messages: response.data,
+            };
+            contactsStore.delete(authenticationService.name);
+            contactsStore.put(obj);
+            return tx.complete;
+          });
+          this.msg.messages = response.data;
+        },
+        (error) => {
+          console.log(error);
+        }
+      );
+    } else {
+      // there is no internet connection, therefor get from cache.
+      idb.open('bored-data', 1, upgradeDb => {
+        upgradeDb.createObjectStore('messageList', { keyPath: 'name' });
+      }).then(db => {
+        return db.transaction('messageList').objectStore('messageList').get(authenticationService.name);
+      }).then(messages => {
+        this.msg.messages = messages.messages;
+      });
+    }
   };
 });
