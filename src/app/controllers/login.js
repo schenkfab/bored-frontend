@@ -7,12 +7,18 @@ angular.module('myApp').controller('loginCtrl', function($location, $window, $sc
   let jwt = $window.localStorage.getItem('jwt');
 
   if (jwt) {
-    $scope.auth.validate(jwt)
-      .then(function() {
-        $scope.auth.token = jwt;
-        $scope.auth.name = $window.localStorage.getItem('name');
-        $scope.auth.status.isLoggedIn = true;
-      });
+    if (navigator.onLine) {
+      $scope.auth.validate(jwt)
+        .then(function() {
+          $scope.auth.token = jwt;
+          $scope.auth.name = $window.localStorage.getItem('name');
+          $scope.auth.status.isLoggedIn = true;
+        });
+    } else {
+      $scope.auth.token = jwt;
+      $scope.auth.name = $window.localStorage.getItem('name');
+      $scope.auth.status.isLoggedIn = true;
+    }
   }
 
   $scope.user.login = () => {
