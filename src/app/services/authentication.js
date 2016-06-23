@@ -9,10 +9,8 @@ angular.module('myApp').service('authenticationService', function ($http, $windo
         { token })
       .then(
           (response) => {
-            console.log(response);
             if (response.data.success) {
               resolve();
-              console.log('Token is still valid');
             } else {
               reject();
             }
