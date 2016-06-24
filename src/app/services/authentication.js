@@ -12,7 +12,7 @@ angular.module('myApp').service('authenticationService', function ($http, $windo
             if (response.data.success) {
               resolve();
             } else {
-              reject();
+              reject('invalid token');
             }
           },
           (error) => {

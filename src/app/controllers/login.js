@@ -16,6 +16,9 @@ angular.module('myApp').controller('loginCtrl', function($mdToast, $location, $w
         $scope.auth.name = $window.localStorage.getItem('name');
         $scope.auth.status.isLoggedIn = true;
         console.log($scope.auth);
+      })
+      .catch((ex) => {
+        console.log(ex);
       });
     } else {
       console.log('we are offline');
