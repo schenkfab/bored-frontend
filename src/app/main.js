@@ -26,7 +26,12 @@ app.run(($window, $rootScope) => {
 if ('serviceWorker' in navigator) {
   navigator.serviceWorker
     .register('./service-worker.js')
-    .then(() => {
+    .then((reg) => {
+      reg.pushManager.subscribe({
+        userVisibleOnly: true,
+      }).then((sub) => {
+        console.log('endpoint:', sub.endpoint);
+      });
       console.log('Service worker Registred');
     });
 }
