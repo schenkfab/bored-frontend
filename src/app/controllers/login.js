@@ -7,21 +7,16 @@ angular.module('myApp').controller('loginCtrl', function($mdToast, $location, $w
   let jwt = $window.localStorage.getItem('jwt');
 
   if (jwt) {
-    console.log('jwt is in local storage');
     if (navigator.onLine) {
-      console.log('we are online');
       $scope.auth.validate(jwt).then(() => {
-        console.log('Token is still valid');
         $scope.auth.token = jwt;
         $scope.auth.name = $window.localStorage.getItem('name');
         $scope.auth.status.isLoggedIn = true;
-        console.log($scope.auth);
       })
       .catch((ex) => {
         console.log(ex);
       });
     } else {
-      console.log('we are offline');
       $scope.auth.token = jwt;
       $scope.auth.name = $window.localStorage.getItem('name');
       $scope.auth.status.isLoggedIn = true;
