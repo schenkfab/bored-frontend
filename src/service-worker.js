@@ -1,5 +1,4 @@
 const cacheName = 'bored-v1';
-const dataCacheName = 'boredData-v1';
 const filesToCache = ['/index.html',
                       '/',
                       '/service-worker.js',
