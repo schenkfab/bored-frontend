@@ -1,5 +1,5 @@
-angular.module('myApp').service('messageService', function ($http, $q, cacheService, authenticationService, configService) {
-
+angular.module('myApp')
+.service('messageService', function ($http, $q, authenticationService, configService) {
   this.msg = {};
   this.msg.messages = [];
   this.msg.unreadMessages = 0;
