@@ -58,7 +58,7 @@ angular.module('myApp').controller('contactCtrl', function($rootScope, $scope, $
   };
 
   $scope.$watch('isOn', (newValue, oldValue) => {
-    if (newValue) {
+    if (newValue && $scope.auth.status.isLoggedIn) {
       $scope.getContacts();
     }
   });
