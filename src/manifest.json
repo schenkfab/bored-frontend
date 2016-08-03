@@ -1,5 +1,6 @@
 {
   "name": "Bored",
+  "gcm_sender_id": "77931234186",
   "short_name": "bored",
   "icons": [{
     "src": "assets/images/icons/icon-128x128.png",

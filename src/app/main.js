@@ -24,14 +24,18 @@ app.run(($window, $rootScope) => {
 
 // Register service worker
 if ('serviceWorker' in navigator) {
-  navigator.serviceWorker
-    .register('./service-worker.js')
-    .then((reg) => {
+  console.log('Service Worker is supported');
+    navigator.serviceWorker.register('./service-worker.js')
+    .then(function(reg) {
+      console.log(':^)', reg);
       reg.pushManager.subscribe({
-        userVisibleOnly: true,
-      }).then((sub) => {
-        console.log('endpoint:', sub.endpoint);
+          userVisibleOnly: true
+      }).then(function(sub) {
+          console.log('endpoint:', sub.endpoint);
       });
-      console.log('Service worker Registred');
+    }).catch(function(error) {
+      console.log(':^(', error);
     });
 }
+
+// Push Notifications Stuff
