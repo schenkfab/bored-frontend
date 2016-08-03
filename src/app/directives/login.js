@@ -1,4 +1,4 @@
-/* eslint arrow-body-style: [""] */
+/* eslint arrow-body-style: [0] */
 angular.module('myApp').directive('login', () => {
   return {
     templateUrl: 'app/templates/login.html', // Where is the html code for the directive?
