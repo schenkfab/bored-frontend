@@ -70,3 +70,21 @@ self.addEventListener('fetch', (e) => {
   );
 });
 
+// Test PUSH Message using cUrl:
+// curl --header "Authorization: key=AIzaSyBQBT_KcnHLn5yIOr1t92SgRR8PuAeOFAY"
+// --header "Content-Type: application/json"
+// https://android.googleapis.com/gcm/send
+// -d "{\"registration_ids\":[\"##SUBSCRIPTION ID##\"]}"
+
+
+self.addEventListener('push', function(event) {
+  console.log('Push message', event);
+  const title = 'Push Message';
+  event.waitUntil(
+    self.registration.showNotification(title, {
+      body: 'The Message',
+      icon: 'images/icon.png',
+      tag: 'my-tag',
+    })
+  );
+});
