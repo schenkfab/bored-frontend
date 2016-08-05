@@ -29,8 +29,10 @@ if ('serviceWorker' in navigator) {
   .then((reg) => {
     console.log(':^)', reg);
     reg.pushManager.subscribe({
-      userVisibleOnly: true
+      userVisibleOnly: true,
     }).then((sub) => {
+      // Store the object in cache
+      localStorage.setItem('endpoint', sub.endpoint);
       console.log('endpoint:', sub.endpoint);
     });
   }).catch((error) => {
