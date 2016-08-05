@@ -30,8 +30,17 @@ angular.module('myApp').service('authenticationService', function ($http, $windo
           this.token = response.data.token;
           $window.localStorage.setItem('jwt', response.data.token);
           $window.localStorage.setItem('name', name);
+          $window.localStorage.setItem('userId', response.data.userId);
           this.status.isLoggedIn = true;
-          resolve();
+          // If the authentication was successful, add the endpoint aswell.
+          const userId = response.data.userId;
+          $http.put(configService.REST_URLS.endpoint + '/' + userId, { endpoint: $window.localStorage.getItem('endpoint') })
+          .then((response) => {
+            resolve();
+          },
+          (error) => {
+            reject(error);
+          });
         },
         (error) => {
           reject(error);

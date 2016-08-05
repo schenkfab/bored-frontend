@@ -7,5 +7,6 @@ angular.module('myApp').service('configService', function () {
     users: 'http://localhost:8080/api/v1/users',
     addContact: 'http://localhost:8080/api/v1/contacts',
     contacts: 'http://localhost:8080/api/v1/contacts',
+    endpoint: 'http://localhost:8080/api/v1/endpoint',
   };
 });
