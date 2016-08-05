@@ -10,7 +10,13 @@ angular.module('myApp').service('authenticationService', function ($http, $windo
       .then(
           (response) => {
             if (response.data.success) {
-              resolve();
+              $http.put(configService.REST_URLS.endpoint + '/' + $window.localStorage.getItem('userId'), { endpoint: $window.localStorage.getItem('endpoint'), token })
+              .then((response) => {
+                resolve();
+              },
+              (error) => {
+                reject(error);
+              });
             } else {
               reject('invalid token');
             }
@@ -34,8 +40,9 @@ angular.module('myApp').service('authenticationService', function ($http, $windo
           this.status.isLoggedIn = true;
           // If the authentication was successful, add the endpoint aswell.
           const userId = response.data.userId;
-          $http.put(configService.REST_URLS.endpoint + '/' + userId, { endpoint: $window.localStorage.getItem('endpoint') })
+          $http.put(configService.REST_URLS.endpoint + '/' + userId, { endpoint: $window.localStorage.getItem('endpoint'), token: this.token })
           .then((response) => {
+            console.log(response);
             resolve();
           },
           (error) => {
