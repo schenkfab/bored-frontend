@@ -1,6 +1,6 @@
 /* eslint no-param-reassign: ["error", { "props": false }]*/
 
-angular.module('myApp').controller('mainCtrl', (authenticationService, $scope, pageService, messageService, $rootScope) => {
+angular.module('myApp').controller('mainCtrl', (authenticationService, $scope, pageService, messageService) => {
   $scope.auth = authenticationService;
   $scope.page = pageService;
   $scope.messageService = messageService;

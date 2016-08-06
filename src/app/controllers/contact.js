@@ -1,6 +1,6 @@
 /* eslint no-param-reassign: ["error", { "props": false }]*/
 
-angular.module('myApp').controller('contactCtrl', function($rootScope, $scope, $http, userService, authenticationService, pageService) {
+angular.module('myApp').controller('contactCtrl', function($scope, $http, userService, authenticationService, pageService) {
   $scope.contacts = [];
   $scope.contact = {};
   $scope.contact.searchName = null;
