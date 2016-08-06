@@ -10,6 +10,7 @@ angular.module('myApp').controller('contactCtrl', function($scope, $http, userSe
 
   $scope.page = pageService;
 
+  // Methods
   $scope.getContacts = () => {
     userService.getContactList($scope.isOn)
       .then((response) => {
@@ -57,7 +58,10 @@ angular.module('myApp').controller('contactCtrl', function($scope, $http, userSe
     }
   };
 
+
+  // Watcher
   $scope.$watch('isOn', (newValue, oldValue) => {
+    // if browser is online and user is logged in, get the contacts
     if (newValue && $scope.auth.status.isLoggedIn) {
       $scope.getContacts();
     }
