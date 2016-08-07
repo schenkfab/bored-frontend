@@ -6,6 +6,8 @@ Before you can use this, you need to be running (Bored-Backend)[https://github.c
 
 Furthermore you need to create a (Google Firebase)[https://console.firebase.google.com/] account and project and get the Cloud Messaging Server key and Sender ID.
 
+Add the Sender ID from Firebase to the manifest.json file
+
 Run both 
 ```
 bower install
