@@ -1,6 +1,6 @@
 /* eslint no-param-reassign: ["error", { "props": false }]*/
 
-angular.module('myApp').controller('mainCtrl', (authenticationService, $scope, pageService, messageService) => {
+angular.module('myApp').controller('mainCtrl', (authenticationService, $scope, pageService, messageService, $interval) => {
   $scope.auth = authenticationService;
   $scope.page = pageService;
   $scope.messageService = messageService;
@@ -16,6 +16,10 @@ angular.module('myApp').controller('mainCtrl', (authenticationService, $scope, p
   $scope.$watch('messageService.msg.unreadMessages', (newValue, oldValue) => {
     $scope.unreadMessages = newValue;
   });
+
+  //$interval(() => {
+   // $scope.messageService.getMessages($scope.isOnline);
+  //}, 10000);
 
   $scope.$watch('isOnline', (newValue, oldValue) => {
     if (newValue && !oldValue) {

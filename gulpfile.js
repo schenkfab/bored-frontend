@@ -68,7 +68,8 @@ gulp.task('serve:dev', ['inject:dev'], function() {
 			routes: {
 				'/bower_components': 'bower_components'
 			},
-			baseDir: './.tmp'
+			baseDir: './.tmp',
+			
 		}
 	});
 

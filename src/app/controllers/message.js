@@ -9,6 +9,7 @@ angular.module('myApp')
 
   $scope.$watch('ms.msg', (newValue, oldValue) => {
     if (newValue !== oldValue) {
+      console.log('A new message has arrived');
       $scope.messages = newValue.messages;
     }
   }, true);
