@@ -99,7 +99,9 @@ angular.module('myApp')
       idb.open('bored-data', 1, upgradeDb => {
         upgradeDb.createObjectStore('messageList', { keyPath: 'name' });
       }).then(db => {
-        return db.transaction('messageList').objectStore('messageList').get(authenticationService.name);
+        return db.transaction('messageList')
+                .objectStore('messageList')
+                .get(authenticationService.name);
       }).then(messages => {
         this.msg.messages = messages.messages;
       });
