@@ -80,7 +80,7 @@ gulp.task('serve:dev', ['inject:dev'], function() {
 
 <!-- PRODUCTION -->
 
-gulp.task('inject:prod', ['fonts:prod', 'assets:prod', 'sass:prod', 'vendorJs:prod', 'js:prod', 'directives:prod'], function () {
+gulp.task('inject:prod', ['manifest:prod', 'serviceworker:prod', 'fonts:prod', 'assets:prod', 'sass:prod', 'vendorJs:prod', 'js:prod', 'directives:prod'], function () {
 	var target = gulp.src(['./src/index.html']);
 	var sourceVendorJs = gulp.src(['./dist/**/vendor.js', './dist/**/jquery.js', './dist/**/angular.js', './dist/**/angular-ui.js', './dist/**/focusIf.js', './dist/**/ui-bootstrap-tpls.js', './dist/sw.js'], {read: false});
 	var sourcesAllJs = gulp.src(['./dist/**/all.js'], {read: false});
@@ -138,6 +138,16 @@ gulp.task('js:prod', [], function() {
 		.pipe(concat('all.js'))
 		.pipe(gulp.dest('./dist/js'));
 });
+
+gulp.task('serviceworker:prod', [], function() {
+	return gulp.src('./src/service-worker.js')
+		.pipe(gulp.dest('./dist'));
+})
+
+gulp.task('manifest:prod', [], function () {
+	return gulp.src('./src/manifest.json')
+		.pipe(gulp.dest('./dist'));
+})
 
 gulp.task('vendorJs:prod', function() {
 	return gulp.src(['./bower_components/jquery/dist/jquery.js', './bower_components/angular/angular.js'
