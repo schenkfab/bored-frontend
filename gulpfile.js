@@ -134,7 +134,7 @@ gulp.task('sass:prod', function() {
 gulp.task('js:prod', [], function() {
 	return gulp.src('./src/app/**/*.js')
 		//.pipe(babel({presets: ['es2015']}))
-		.pipe(uglify({mangle: false}).on('error', gutil.log))
+		//.pipe(uglify({mangle: false}).on('error', gutil.log))
 		.pipe(concat('all.js'))
 		.pipe(gulp.dest('./dist/js'));
 });
