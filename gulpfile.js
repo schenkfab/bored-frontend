@@ -8,6 +8,7 @@ var runSequence = require('run-sequence');
 var concat = require('gulp-concat');
 var uglify = require('gulp-uglify');
 var gutil = require('gulp-util');
+var replace = require('gulp-replace');
 
 // Constants
 
@@ -114,18 +115,13 @@ gulp.task('fonts:prod', ['bootstrap-font:prod'], function () {
 		.pipe(gulp.dest('./dist/fonts'));
 });
 
-gulp.task('css:prod', function () {
-	return gulp.src('./bower_components/font-awesome/css/*.min.css')
-		.pipe(gulp.dest('./dist/css'));
-});
-
 gulp.task('directives:prod', function() {
 	return gulp.src('./src/app/**/*.html')
 		.pipe(gulp.dest('./dist/app'));
 });
 
 gulp.task('sass:prod', function() {
-	return gulp.src(['./src/app/**/vendors.scss', './src/app/**/style.scss'])
+	return gulp.src(['./src/app/**/vendors.scss', './bower_components/angular-material/angular-material.scss', './src/app/**/style.scss'])
 		.pipe(sass().on('error', sass.logError))
 		.pipe(concat('all.css'))
 		.pipe(gulp.dest('./dist/css'));
@@ -141,6 +137,7 @@ gulp.task('js:prod', [], function() {
 
 gulp.task('serviceworker:prod', [], function() {
 	return gulp.src('./src/service-worker.js')
+		.pipe(replace('addAll(filesToCache)', 'addAll(filesToCacheProd)'))
 		.pipe(gulp.dest('./dist'));
 })
 
@@ -152,8 +149,11 @@ gulp.task('manifest:prod', [], function () {
 gulp.task('vendorJs:prod', function() {
 	return gulp.src(['./bower_components/jquery/dist/jquery.js', './bower_components/angular/angular.js'
 	, './bower_components/ng-focus-if/focusIf.js', './bower_components/angular-ui/build/angular-ui.js'
+	, './bower_components/angular-animate/angular-animate.js'
+	, './bower_components/angular-aria/angular-aria.js'
+	, './bower_components/angular-material/angular-material.js'
 	, './bower_components/angular-bootstrap/ui-bootstrap-tpls.js'])
-		.pipe(uglify({mangle: false}))
+		//.pipe(uglify({mangle: false}))
 		.pipe(concat('vendor.js'))
 		.pipe(gulp.dest('./dist/js'));
 });

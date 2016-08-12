@@ -1,4 +1,7 @@
 const cacheName = 'bored-v1';
+
+const filesToCacheProd = ['/index.html', '/', '/css/all.css', '/js/all.js', '/js/vendor.js', '/service-worker.js', '/manifest.json'];
+
 const filesToCache = ['/index.html',
                       '/',
                       '/service-worker.js',
