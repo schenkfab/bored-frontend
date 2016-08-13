@@ -14,7 +14,7 @@ var replace = require('gulp-replace');
 
 const tmpPath = './tmp';
 
-gulp.task('inject:dev', ['manifest:dev', 'sass:dev', 'js:dev', 'directives:dev', 'fonts:dev'], function () {
+gulp.task('inject:dev', ['manifest:dev', 'sass:dev', 'js:dev', 'directives:dev', 'fonts:dev', 'assets:dev'], function () {
 	var target = gulp.src('./src/index.html');
 	var sources = gulp.src(['./.tmp/**/*.js', './.tmp/**/style.css'], {read: false});
 	var sourceVendorJs = gulp.src([
@@ -40,6 +40,11 @@ gulp.task('inject:dev', ['manifest:dev', 'sass:dev', 'js:dev', 'directives:dev',
 gulp.task('fonts:dev', function () {
 	return gulp.src('./src/fonts/**/*')
 		.pipe(gulp.dest('./.tmp/fonts/'));
+});
+
+gulp.task('assets:dev', function () {
+	return gulp.src('./src/assets/**/*.*')
+		.pipe(gulp.dest('./.tmp/assets/'));
 });
 
 gulp.task('directives:dev', function() {
